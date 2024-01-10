@@ -42,6 +42,8 @@ const ReminderModal = ({}: ReminderModalProps) => {
 				selectedReminder={reminders.selectedReminder}
 				actionButtonLabel={actionButtonLabel}
 				actionButtonLoadingLabel={actionButtonLoadingLabel}
+				cancelButtonLabel="Cancel"
+				onCancel={reminderModal.onClose}
 			/>
 		</Modal>
 	);

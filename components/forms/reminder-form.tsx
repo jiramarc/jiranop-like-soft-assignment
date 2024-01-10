@@ -19,6 +19,7 @@ type ReminderFormProps = {
 	actionButtonLabel?: string;
 	actionButtonLoadingLabel?: string;
 	cancelButtonLabel?: string;
+	onCancel?: () => void;
 };
 
 const reminderFormSchema = z.object({
@@ -33,7 +34,7 @@ const reminderFormSchema = z.object({
 
 type ReminderFormSchema = z.infer<typeof reminderFormSchema>;
 
-const ReminderForm = ({ selectedReminder, actionButtonLabel, actionButtonLoadingLabel, cancelButtonLabel }: ReminderFormProps) => {
+const ReminderForm = ({ selectedReminder, actionButtonLabel, actionButtonLoadingLabel, cancelButtonLabel, onCancel }: ReminderFormProps) => {
 	const reminderModal = useReminderModal();
 	const reminders = useReminder();
 
@@ -116,7 +117,7 @@ const ReminderForm = ({ selectedReminder, actionButtonLabel, actionButtonLoading
 					actionButtonLoadingLabel={actionButtonLoadingLabel}
 					resetButtonLabel={cancelButtonLabel}
 					isLoading={form.formState.isSubmitting}
-					onCancel={() => form.reset()}
+					onCancel={onCancel ? onCancel : form.reset}
 				/>
 			</form>
 		</Form>

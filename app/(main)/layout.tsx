@@ -1,9 +1,11 @@
-import { StackedLayout } from "@/components/layouts/stacked-layout";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import "./globals.css";
+
+import { StackedLayout } from "@/components/layouts/stacked-layout";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
+import "../globals.css";
 
 export const fontSans = FontSans({
 	subsets: ["latin"],
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
 	description: "This project is for assignment of Like Soft (Edispro active)",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<html
 			lang="en"
@@ -27,9 +29,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange>
-					<StackedLayout>{children}</StackedLayout>
+					<StackedLayout>
+						<main>{children}</main>
+					</StackedLayout>
+
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;
